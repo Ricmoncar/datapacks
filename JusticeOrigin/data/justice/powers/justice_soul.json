@@ -1,46 +1,67 @@
 {
-    "type": "origins:multiple",
-    "soul_glow": {
-      "type": "origins:entity_glow",
-      "entity_condition": {
-        "type": "origins:entity_group",
-        "group": "undead"
-      },
-      "use_teams": false,
-      "red": 1.0,
-      "green": 0.9,
-      "blue": 0.0,
-      "name": "Soul Vision",
-      "description": "You can see the souls of undead creatures glowing yellow through walls."
+  "type": "origins:multiple",
+  "soul_glow": {
+    "type": "origins:entity_glow",
+    "entity_condition": {
+      "type": "origins:entity_group",
+      "group": "undead"
     },
-    "attack_modifier": {
-      "type": "origins:target_action_on_hit",
-      "entity_action": {
-        "type": "origins:set_on_fire",
-        "duration": 4
-      },
-      "cooldown": 20,
-      "target_condition": {
-        "type": "origins:entity_group",
-        "group": "undead"
-      },
-      "name": "Righteous Flame",
-      "description": "Your attacks set undead creatures on fire with righteous energy."
+    "use_teams": false,
+    "red": 1.0,
+    "green": 0.9,
+    "blue": 0.0,
+    "name": "Soul Vision",
+    "description": "You can see the souls of undead creatures glowing yellow through walls."
+  },
+  "attack_modifier": {
+    "type": "origins:target_action_on_hit",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:set_on_fire",
+          "duration": 4
+        },
+        {
+          "type": "origins:apply_effect",
+          "effect": {
+            "effect": "minecraft:weakness",
+            "duration": 100,
+            "amplifier": 1,
+            "show_particles": true,
+            "show_icon": true
+          }
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "particle minecraft:end_rod ~ ~1 ~ 0.3 0.5 0.3 0.05 10 normal",
+          "permission_level": 4
+        }
+      ]
     },
-    "fall_immunity": {
-      "type": "origins:modify_falling",
-      "velocity": 0.03,
-      "take_fall_damage": false,
-      "name": "Soul Float",
-      "description": "Your soul allows you to slowly float downward, negating fall damage."
+    "cooldown": 20,
+    "target_condition": {
+      "type": "origins:entity_group",
+      "group": "undead"
     },
-    "justice_aura": {
-      "type": "origins:model_color",
-      "red": 1.0,
-      "green": 0.9,
-      "blue": 0.0,
-      "alpha": 0.5,
-      "name": "Justice Aura",
-      "description": "Your body glows with a faint golden light, representing your soul of justice."
-    }
-  }
+    "name": "Righteous Judgment",
+    "description": "Your attacks set undead creatures on fire, weaken them, and release bursts of golden energy particles."
+  },
+  "justice_aura": {
+    "type": "origins:particle",
+    "particle": "minecraft:end_rod",
+    "frequency": 4,
+    "count": 1,
+    "speed": 0.0,
+    "spread": {
+      "x": 0.5,
+      "y": 0.5,
+      "z": 0.5
+    },
+    "offset_y": 1,
+    "name": "Justice Aura",
+    "description": "Your body emits golden particles, representing the power of your justice soul."
+  },
+  "name": "Justice Soul",
+  "description": "Your soul resonates with the golden light of justice. You can see undead through walls, your attacks bring righteous judgment upon them, and you float gently when falling. Your body emits a soft golden glow."
+}

@@ -1,0 +1,32 @@
+{
+    "type": "origins:multiple",
+    "lowered_health": {
+      "type": "origins:attribute",
+      "modifier": {
+        "name": "Less health",
+        "attribute": "minecraft:generic.max_health",
+        "value": -6,
+        "operation": "addition"
+      }
+    },
+    "increased_attack": {
+      "type": "origins:attribute",
+      "modifier": {
+        "name": "Increased damage",
+        "attribute": "minecraft:generic.attack_damage",
+        "value": 2,
+        "operation": "addition"
+      }
+    },
+    "increased_speed": {
+      "type": "origins:attribute",
+      "modifier": {
+        "name": "Increased movement speed",
+        "attribute": "minecraft:generic.movement_speed",
+        "value": 0.05,
+        "operation": "addition"
+      }
+    },
+    "name": "Altered Stats",
+    "description": "Your focus on justice has altered your physical form. You have 3 fewer hearts of health, but deal 1 heart more damage and move 15% faster than normal."
+  }

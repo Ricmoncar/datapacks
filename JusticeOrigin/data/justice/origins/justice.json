@@ -1,13 +1,16 @@
 {
 	"powers": [
 	  "justice:justice_blast",
-	  "justice:justice_soul"
+	  "justice:justice_soul",
+	  "justice:justice_gun",
+	  "justice:altered_stats"
 	],
-	"icon":{
-  "id":"minecraft:gold_ingot"
-},
-	"order": 10,
-	"impact": 2,
 	"name": "Justice Soul",
-	"description": "Your soul would glow with the golden light of justice."
+	"icon": {
+	  "id": "minecraft:gold_ingot"
+	},
+	"order": 10,
+	"impact": 3,
+	"name": "Justice Soul",
+	"description": "Your soul burns with righteousness and golden justice. You can see the undead through walls, your attacks ignite them, and you can fire beams of justice energy. Though you have less health, your attacks are stronger and you move faster."
   }
