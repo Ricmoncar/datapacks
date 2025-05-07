@@ -3,30 +3,30 @@
     "lowered_health": {
       "type": "origins:attribute",
       "modifier": {
-        "name": "Less health",
+        "id": "justice:altered_stats/less_health",
         "attribute": "minecraft:generic.max_health",
-        "value": -6,
-        "operation": "addition"
+        "amount": -6,
+        "operation": "add_value"
       }
     },
     "increased_attack": {
       "type": "origins:attribute",
       "modifier": {
-        "name": "Increased damage",
+        "id": "justice:altered_stats/increased_attack",
         "attribute": "minecraft:generic.attack_damage",
-        "value": 2,
-        "operation": "addition"
+        "amount": 2,
+        "operation": "add_value"
       }
     },
     "increased_speed": {
       "type": "origins:attribute",
       "modifier": {
-        "name": "Increased movement speed",
+        "id": "justice:altered_stats/increased_speed",
         "attribute": "minecraft:generic.movement_speed",
-        "value": 0.05,
-        "operation": "addition"
+        "amount": 0.15,
+        "operation": "add_multiplied_base"
       }
     },
     "name": "Altered Stats",
-    "description": "Your focus on justice has altered your physical form. You have 3 fewer hearts of health, but deal 1 heart more damage and move 15% faster than normal."
-  }
+    "description": "Your focus on justice has altered your physical form. You have 3 fewer hearts of health, but deal 1 heart more melee damage and move 15% faster than normal."
+}

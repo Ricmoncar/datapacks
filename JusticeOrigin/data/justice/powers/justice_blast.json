@@ -1,85 +1,13 @@
 {
 	"type": "origins:multiple",
-	"beam": {
-	  "type": "origins:fire_projectile",
-	  "entity_type": "minecraft:dragon_fireball",
-	  "cooldown": 300,
-	  "hud_render": {
-		"should_render": true,
-		"sprite_location": "origins:textures/gui/resource_bar.png",
-		"bar_index": 4
-	  },
-	  "count": 1,
-	  "interval": 1,
-	  "start_delay": 0,
-	  "speed": 3.0,
-	  "divergence": 0,
-	  "sound": "minecraft:entity.blaze.shoot",
-	  "tag": "{CustomName:'{\"text\":\"Justice Beam\"}',CustomNameVisible:0,NoGravity:1b,ExplosionPower:3,Fire:100,Item:{id:\"minecraft:gold_ingot\",Count:1},direction:[0.0,0.0,0.0],power:[0.0,0.0,0.0]}"
-	},
-	"particles": {
-	  "type": "origins:action_over_time",
-	  "entity_action": {
-		"type": "origins:and",
-		"actions": [
-		  {
-			"type": "origins:execute_command",
-			"command": "execute if score @s justice_beam_active matches 1 run particle minecraft:dust 1.0 0.9 0.0 1.0 ^ ^ ^5 0.1 0.1 0.1 0 75 normal",
-			"permission_level": 4
-		  },
-		  {
-			"type": "origins:execute_command",
-			"command": "execute if score @s justice_beam_active matches 1 run particle minecraft:end_rod ^ ^ ^5 0.5 0.5 0.5 0.05 20 normal",
-			"permission_level": 4
-		  },
-		  {
-			"type": "origins:execute_command",
-			"command": "execute if score @s justice_beam_active matches 1 run particle minecraft:dust 1.0 1.0 0.4 1.5 ^ ^ ^8 1 1 1 0.01 25 normal",
-			"permission_level": 4
-		  },
-		  {
-			"type": "origins:execute_command",
-			"command": "execute if score @s justice_beam_active matches 1 run particle minecraft:flash ^ ^ ^10 0 0 0 0 1 normal",
-			"permission_level": 4
-		  }
-		]
-	  },
-	  "interval": 1
-	},
-	"activate": {
-	  "type": "origins:active_self",
-	  "entity_action": {
-		"type": "origins:execute_command",
-		"command": "scoreboard players set @s justice_beam_active 1",
-		"permission_level": 4
-	  },
-	  "cooldown": 300,
-	  "hud_render": {
-		"should_render": true,
-		"sprite_location": "origins:textures/gui/resource_bar.png",
-		"bar_index": 4
-	  },
-	  "key": {
-		"key": "key.origins.primary_active",
-		"continuous": false
-	  }
-	},
-	"deactivate": {
-	  "type": "origins:action_over_time",
-	  "entity_action": {
-		"type": "origins:execute_command",
-		"command": "scoreboard players set @s justice_beam_active 0",
-		"permission_level": 4
-	  },
-	  "interval": 60
-	},
-	"setup": {
+	"setup_scoreboard": {
 	  "type": "origins:action_on_callback",
 	  "entity_action_chosen": {
 		"type": "origins:execute_command",
 		"command": "scoreboard objectives add justice_beam_active dummy",
 		"permission_level": 4
 	  },
+	  "execute_chosen_when_orb": true,
 	  "entity_action_respawned": {
 		"type": "origins:execute_command",
 		"command": "scoreboard players set @s justice_beam_active 0",
@@ -91,6 +19,103 @@
 		"permission_level": 4
 	  }
 	},
-	"name": "Justice Beam",
-	"description": "Press the PRIMARY key (default: G) to unleash a powerful piercing beam of golden justice that blasts through enemies and blocks with tremendous force. Surrounded by dazzling golden particles and flashes of light!"
+	"activate_and_fire": {
+	  "type": "origins:active_self",
+	  "entity_action": {
+		  "type": "origins:and",
+		  "actions": [
+			  {
+				  "type": "origins:execute_command",
+				  "command": "scoreboard players set @s justice_beam_active 1",
+				  "permission_level": 4
+			  },
+			  {
+				  "type": "origins:fire_projectile",
+				  "entity_type": "minecraft:arrow",
+				  "speed": 5.0, 
+				  "divergence": 0,
+				  "sound": "minecraft:entity.warden.sonic_boom",
+
+				  "tag": "{IsJusticeBeamProjectile:1b,CustomName:'{\"text\":\"Justice Beam\"}',CustomNameVisible:0,NoGravity:1b,Color:16776960,damage:1.0,PierceLevel:25,pickup:0b,crit:1b,ActiveEffects:[{Id:14,Amplifier:0,Duration:999999,ShowParticles:0b}]}"
+			  },
+			  {
+				  "type": "origins:play_sound",
+				  "sound": "minecraft:entity.evoker.prepare_attack",
+				  "volume": 1.2,
+				  "pitch": 0.6
+			  }
+		  ]
+	  },
+	  "cooldown": 200,
+	  "hud_render": {
+		"should_render": true,
+		"sprite_location": "origins:textures/gui/resource_bar.png",
+		"bar_index": 4
+	  },
+	  "key": {
+		"key": "key.origins.primary_active"
+	  }
+	},
+	"particle_effect_while_active": {
+	  "type": "origins:action_over_time",
+	  "entity_action": {
+		"type": "origins:and",
+		"actions": [
+
+		  {
+			"type": "origins:execute_command",
+			"command": "execute if score @s justice_beam_active matches 1 run particle minecraft:flash ^ ^1.2 ^0.5 0.1 0.1 0.1 0 2 force",
+			"permission_level": 4
+		  },
+		  {
+			"type": "origins:execute_command",
+			"command": "execute if score @s justice_beam_active matches 1 run particle minecraft:end_rod ^ ^1.0 ^1.0 1.5 1.5 1.5 0.03 200 force",
+			"permission_level": 4
+		  },
+		  {
+			"type": "origins:execute_command",
+			"command": "execute if score @s justice_beam_active matches 1 run particle minecraft:crit ^ ^1.2 ^1.2 1.0 1.0 1.0 0.5 100 force",
+			"permission_level": 4
+		  },
+		  {
+			"type": "origins:execute_command",
+			"command": "execute if score @s justice_beam_active matches 1 run particle minecraft:totem_of_undying ^ ^1.0 ^0.5 0.5 0.5 0.5 0.7 5 force",
+			"permission_level": 4
+		  },
+		  {
+			"type": "origins:execute_command",
+			"command": "execute if score @s justice_beam_active matches 1 run particle minecraft:enchanted_hit ^ ^1.0 ^0.8 1.2 1.2 1.2 0.2 100 force",
+			"permission_level": 4
+		  },
+		  {
+			"type": "origins:execute_command",
+			"command": "execute if score @s justice_beam_active matches 1 run particle minecraft:flame ^0.3 ^0.7 ^1.0 0.8 0.8 0.8 0.02 80 force",
+			"permission_level": 4
+		  },
+		  {
+			"type": "origins:execute_command",
+			"command": "execute if score @s justice_beam_active matches 1 run particle minecraft:end_rod ^0.5 ^1.5 ^0.5 0.8 1.0 0.8 0.05 150 force",
+			"permission_level": 4
+		  }
+		]
+	  },
+	  "interval": 1
+	},
+	"deactivate_effect": {
+	  "type": "origins:action_over_time",
+	  "entity_action": {
+		"type": "origins:execute_command",
+		"command": "scoreboard players set @s justice_beam_active 0",
+		"permission_level": 4
+	  },
+	  "interval": 10, 
+	  "condition": {
+		  "type": "origins:scoreboard",
+		  "objective": "justice_beam_active",
+		  "comparison": "==",
+		  "compare_to": 1
+	  }
+	},
+	"name": "Piercing Justice Beam",
+	"description": "Press your PRIMARY key to unleash a spectacular, powerful, piercing beam of golden justice. Deals massive damage to undead and monsters, but only scratches others."
   }

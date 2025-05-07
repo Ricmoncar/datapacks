@@ -1,0 +1,22 @@
+{
+    "type": "origins:fire_projectile",
+    "entity_type": "minecraft:arrow",
+    "cooldown": 45,
+    "hud_render": {
+      "should_render": true,
+      "sprite_location": "origins:textures/gui/resource_bar.png",
+      "bar_index": 4
+    },
+    "count": 3,
+    "interval": 1,
+    "speed": 4.0,
+    "divergence": 8.0,
+    "sound": "minecraft:entity.arrow.shoot",
+    "tag": "{CustomName:'{\"text\":\"Justice Shard\"}',CustomNameVisible:0,Color:16776960,NoGravity:1b,damage:0.2,pickup:0b}",
+    "key": {
+      "key": "key.origins.secondary_active",
+      "continuous": false
+    },
+    "name": "Justice Scattergun",
+    "description": "Press your SECONDARY key to fire a burst of 4 small, golden shards, each dealing 1.5 hearts of damage."
+  }

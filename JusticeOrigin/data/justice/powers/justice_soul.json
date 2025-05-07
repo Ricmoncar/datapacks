@@ -3,8 +3,8 @@
   "soul_glow": {
     "type": "origins:entity_glow",
     "entity_condition": {
-      "type": "origins:entity_group",
-      "group": "undead"
+      "type": "origins:in_tag",
+      "tag": "minecraft:undead"
     },
     "use_teams": false,
     "red": 1.0,
@@ -25,7 +25,7 @@
         {
           "type": "origins:apply_effect",
           "effect": {
-            "effect": "minecraft:weakness",
+            "id": "minecraft:weakness",
             "duration": 100,
             "amplifier": 1,
             "show_particles": true,
@@ -34,34 +34,40 @@
         },
         {
           "type": "origins:execute_command",
-          "command": "particle minecraft:end_rod ~ ~1 ~ 0.3 0.5 0.3 0.05 10 normal",
+          "command": "particle minecraft:crit ~ ~1 ~ 0.3 0.5 0.3 0.1 15 normal",
           "permission_level": 4
+        },
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:item.trident.riptide_1",
+          "volume": 0.5,
+          "pitch": 1.5
         }
       ]
     },
     "cooldown": 20,
     "target_condition": {
-      "type": "origins:entity_group",
-      "group": "undead"
+      "type": "origins:in_tag",
+      "tag": "minecraft:undead"
     },
     "name": "Righteous Judgment",
-    "description": "Your attacks set undead creatures on fire, weaken them, and release bursts of golden energy particles."
+    "description": "Your melee attacks set undead creatures on fire, weaken them, and release bursts of golden energy particles."
   },
   "justice_aura": {
     "type": "origins:particle",
     "particle": "minecraft:end_rod",
-    "frequency": 4,
+    "frequency": 10,
     "count": 1,
-    "speed": 0.0,
+    "speed": 0.01,
     "spread": {
-      "x": 0.5,
-      "y": 0.5,
-      "z": 0.5
+      "x": 0.6,
+      "y": 1.0,
+      "z": 0.6
     },
-    "offset_y": 1,
+    "offset_y": 0.1,
     "name": "Justice Aura",
-    "description": "Your body emits golden particles, representing the power of your justice soul."
+    "description": "Your body emits soft golden particles, representing the power of your justice soul."
   },
-  "name": "Justice Soul",
-  "description": "Your soul resonates with the golden light of justice. You can see undead through walls, your attacks bring righteous judgment upon them, and you float gently when falling. Your body emits a soft golden glow."
+  "name": "Justice",
+  "description": "Your soul resonates with the golden light of justice. You can see undead through walls, and your attacks bring righteous judgment upon them. Your body emits a soft golden glow."
 }

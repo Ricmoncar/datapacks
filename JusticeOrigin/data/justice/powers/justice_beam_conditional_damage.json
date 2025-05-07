@@ -1,0 +1,74 @@
+{
+    "type": "origins:target_action_on_hit",
+    "bientity_action": {
+        "type": "origins:if_else",
+        "condition": {
+            "type": "origins:target_condition",
+            "condition": {
+                "type": "origins:any_of",
+                "conditions": [
+                    {
+                        "type": "origins:in_tag",
+                        "tag": "minecraft:undead"
+                    },
+                    {
+                        "type": "origins:in_tag",
+                        "tag": "minecraft:monsters"
+                    }
+                ]
+            }
+        },
+        "if_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:damage",
+                    "amount": 29,
+                    "source": {
+                        "name": "justice.beam.holy.bonus",
+                        "bypasses_armor": true,
+                        "magic": true,
+                        "unblockable": true
+                    }
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "particle minecraft:explosion_emitter ~ ~1 ~",
+                    "permission_level": 4
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "particle minecraft:flash ~ ~1 ~ 0.2 0.2 0.2 0 3",
+                    "permission_level": 4
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "particle minecraft:end_rod ~ ~1 ~ 0.5 0.5 0.5 0.1 100",
+                    "permission_level": 4
+                }
+            ]
+        },
+        "else_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "particle minecraft:crit ~ ~0.5 ~ 0.2 0.2 0.2 0.1 20",
+                    "permission_level": 4
+                }
+            ]
+        }
+    },
+    "damage_condition": {
+        "type": "origins:projectile",
+        "projectile_condition": {
+            "type": "origins:nbt",
+            "nbt": "{IsJusticeBeamProjectile:1b}"
+        }
+    },
+    "cooldown": 1,
+    "hud_render": {"should_render": false},
+    "hidden": true,
+    "name": "Justice Beam Impact & Damage",
+    "description": "Internal. Applies bonus damage and impact effects from the Justice Beam."
+}
