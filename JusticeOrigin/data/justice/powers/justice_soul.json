@@ -1,0 +1,46 @@
+{
+    "type": "origins:multiple",
+    "soul_glow": {
+      "type": "origins:entity_glow",
+      "entity_condition": {
+        "type": "origins:entity_group",
+        "group": "undead"
+      },
+      "use_teams": false,
+      "red": 1.0,
+      "green": 0.9,
+      "blue": 0.0,
+      "name": "Soul Vision",
+      "description": "You can see the souls of undead creatures glowing yellow through walls."
+    },
+    "attack_modifier": {
+      "type": "origins:target_action_on_hit",
+      "entity_action": {
+        "type": "origins:set_on_fire",
+        "duration": 4
+      },
+      "cooldown": 20,
+      "target_condition": {
+        "type": "origins:entity_group",
+        "group": "undead"
+      },
+      "name": "Righteous Flame",
+      "description": "Your attacks set undead creatures on fire with righteous energy."
+    },
+    "fall_immunity": {
+      "type": "origins:modify_falling",
+      "velocity": 0.03,
+      "take_fall_damage": false,
+      "name": "Soul Float",
+      "description": "Your soul allows you to slowly float downward, negating fall damage."
+    },
+    "justice_aura": {
+      "type": "origins:model_color",
+      "red": 1.0,
+      "green": 0.9,
+      "blue": 0.0,
+      "alpha": 0.5,
+      "name": "Justice Aura",
+      "description": "Your body glows with a faint golden light, representing your soul of justice."
+    }
+  }
